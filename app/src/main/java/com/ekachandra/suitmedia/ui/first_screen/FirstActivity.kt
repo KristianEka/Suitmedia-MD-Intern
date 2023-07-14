@@ -2,6 +2,7 @@ package com.ekachandra.suitmedia.ui.first_screen
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -31,6 +32,8 @@ class FirstActivity : AppCompatActivity() {
                 val intent = Intent(this, SecondActivity::class.java)
                 intent.putExtra(SecondActivity.username, tvName)
                 startActivity(intent)
+            } else {
+                showToast(getString(R.string.please_fill_in_your_name))
             }
         }
     }
@@ -44,6 +47,8 @@ class FirstActivity : AppCompatActivity() {
                 } else {
                     showAlert(getString(R.string.not_palindrome))
                 }
+            } else {
+                showToast(getString(R.string.the_palindrome_field_is_still_empty))
             }
 
         }
@@ -60,5 +65,9 @@ class FirstActivity : AppCompatActivity() {
             .setTitle(R.string.palindrome)
             .setMessage(message)
             .show()
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 }
